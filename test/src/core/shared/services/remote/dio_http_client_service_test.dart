@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:store_clean_archtecture/src/core/failures/failures.dart';
-import 'package:store_clean_archtecture/src/core/services/remote/dio_http_client_service.dart';
+import 'package:store_clean_archtecture/src/core/shared/failures/failures.dart';
+import 'package:store_clean_archtecture/src/core/shared/services/remote/dio_http_client_service.dart';
 
-import '../../../../mocks/mock.dart';
+import '../../../../../mocks/mock.dart';
 
 void main() {
   late DioHttpServiceImp httpClient;
@@ -44,7 +44,9 @@ void main() {
     test('Should throw NoInternetConnection - DioErroType receiveTimeout',
         () async {
       when(() => dio.get(any())).thenThrow(DioError(
-          requestOptions: RequestOptions(path: ''), type: DioErrorType.other));
+        requestOptions: RequestOptions(path: ''),
+        type: DioErrorType.other,
+      ));
 
       expect(() async => await httpClient.get(''),
           throwsA(isA<NoInternetConnection>()));
@@ -52,7 +54,9 @@ void main() {
 
     test('Should throw DioServiceError - DioErroType receiveTimeout', () async {
       when(() => dio.get(any())).thenThrow(DioError(
-          requestOptions: RequestOptions(path: ''), type: DioErrorType.cancel));
+        requestOptions: RequestOptions(path: ''),
+        type: DioErrorType.cancel,
+      ));
 
       expect(() async => await httpClient.get(''),
           throwsA(isA<DioServiceError>()));
@@ -71,8 +75,9 @@ void main() {
     test('Should throw NoInternetConnection - DioErroType connectTimeout',
         () async {
       when(() => dio.put(any())).thenThrow(DioError(
-          requestOptions: RequestOptions(path: ''),
-          type: DioErrorType.connectTimeout));
+        requestOptions: RequestOptions(path: ''),
+        type: DioErrorType.connectTimeout,
+      ));
 
       expect(() async => await httpClient.put(''),
           throwsA(isA<NoInternetConnection>()));
@@ -80,8 +85,9 @@ void main() {
     test('Should throw NoInternetConnection - DioErroType receiveTimeout',
         () async {
       when(() => dio.put(any())).thenThrow(DioError(
-          requestOptions: RequestOptions(path: ''),
-          type: DioErrorType.receiveTimeout));
+        requestOptions: RequestOptions(path: ''),
+        type: DioErrorType.receiveTimeout,
+      ));
 
       expect(() async => await httpClient.put(''),
           throwsA(isA<NoInternetConnection>()));
@@ -89,7 +95,9 @@ void main() {
     test('Should throw NoInternetConnection - DioErroType receiveTimeout',
         () async {
       when(() => dio.put(any())).thenThrow(DioError(
-          requestOptions: RequestOptions(path: ''), type: DioErrorType.other));
+        requestOptions: RequestOptions(path: ''),
+        type: DioErrorType.other,
+      ));
 
       expect(() async => await httpClient.put(''),
           throwsA(isA<NoInternetConnection>()));
@@ -97,7 +105,9 @@ void main() {
 
     test('Should throw DioServiceError - DioErroType receiveTimeout', () async {
       when(() => dio.put(any())).thenThrow(DioError(
-          requestOptions: RequestOptions(path: ''), type: DioErrorType.cancel));
+        requestOptions: RequestOptions(path: ''),
+        type: DioErrorType.cancel,
+      ));
 
       expect(() async => await httpClient.put(''),
           throwsA(isA<DioServiceError>()));
@@ -116,8 +126,9 @@ void main() {
     test('Should throw NoInternetConnection - DioErroType connectTimeout',
         () async {
       when(() => dio.delete(any())).thenThrow(DioError(
-          requestOptions: RequestOptions(path: ''),
-          type: DioErrorType.connectTimeout));
+        requestOptions: RequestOptions(path: ''),
+        type: DioErrorType.connectTimeout,
+      ));
 
       expect(() async => await httpClient.delete(''),
           throwsA(isA<NoInternetConnection>()));
@@ -125,8 +136,9 @@ void main() {
     test('Should throw NoInternetConnection - DioErroType receiveTimeout',
         () async {
       when(() => dio.delete(any())).thenThrow(DioError(
-          requestOptions: RequestOptions(path: ''),
-          type: DioErrorType.receiveTimeout));
+        requestOptions: RequestOptions(path: ''),
+        type: DioErrorType.receiveTimeout,
+      ));
 
       expect(() async => await httpClient.delete(''),
           throwsA(isA<NoInternetConnection>()));
@@ -134,7 +146,9 @@ void main() {
     test('Should throw NoInternetConnection - DioErroType receiveTimeout',
         () async {
       when(() => dio.delete(any())).thenThrow(DioError(
-          requestOptions: RequestOptions(path: ''), type: DioErrorType.other));
+        requestOptions: RequestOptions(path: ''),
+        type: DioErrorType.other,
+      ));
 
       expect(() async => await httpClient.delete(''),
           throwsA(isA<NoInternetConnection>()));
@@ -142,7 +156,9 @@ void main() {
 
     test('Should throw DioServiceError - DioErroType receiveTimeout', () async {
       when(() => dio.delete(any())).thenThrow(DioError(
-          requestOptions: RequestOptions(path: ''), type: DioErrorType.cancel));
+        requestOptions: RequestOptions(path: ''),
+        type: DioErrorType.cancel,
+      ));
 
       expect(() async => await httpClient.delete(''),
           throwsA(isA<DioServiceError>()));

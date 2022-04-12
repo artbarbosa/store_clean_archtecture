@@ -1,18 +1,19 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:store_clean_archtecture/src/modules/product/domain/entities/product_entity.dart';
-import 'package:store_clean_archtecture/src/modules/product/domain/usecases/get_single_product_by_id.dart';
+import 'package:store_clean_archtecture/src/modules/product/domain/usecases/product_usecase/get_single_product_by_id_usecase.dart';
 
-import '../../../../../mocks/mock.dart';
+import '../../../../../../mocks/mock.dart';
+
 
 void main() {
   late ProductRepositoryMock repository;
-  late GetSingleProductByIdImp usecase;
+  late GetSingleProductByIdUseCaseImp usecase;
   final entity = ProductEntityMock();
 
   setUpAll(() {
     repository = ProductRepositoryMock();
-    usecase = GetSingleProductByIdImp(repository: repository);
+    usecase = GetSingleProductByIdUseCaseImp(repository: repository);
   });
 
   test('Should return ProductEntity', () async {

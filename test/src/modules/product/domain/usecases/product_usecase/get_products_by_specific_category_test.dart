@@ -1,20 +1,20 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:store_clean_archtecture/src/modules/product/domain/entities/product_entity.dart';
-import 'package:store_clean_archtecture/src/modules/product/domain/usecases/get_products_by_specific_category.dart';
+import 'package:store_clean_archtecture/src/modules/product/domain/usecases/product_usecase/get_products_by_specific_category_usecase.dart';
 import 'package:store_clean_archtecture/src/modules/product/domain/value_objects/category.dart';
 
-import '../../../../../mocks/mock.dart';
+import '../../../../../../mocks/mock.dart';
 
 void main() {
   late ProductRepositoryMock repository;
-  late GetProductsBySpecificCategoryImp usecase;
+  late GetProductsBySpecificCategoryUseCaseImp usecase;
   final entity = ProductEntityMock();
   final category = Category(name: 'name');
 
   setUpAll(() {
     repository = ProductRepositoryMock();
-    usecase = GetProductsBySpecificCategoryImp(repository: repository);
+    usecase = GetProductsBySpecificCategoryUseCaseImp(repository: repository);
   });
 
   test('Should return List ProductEntity', () async {

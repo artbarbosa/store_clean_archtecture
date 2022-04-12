@@ -1,7 +1,6 @@
-import 'package:store_clean_archtecture/src/core/services/remote/http_client_service.dart';
-import 'package:store_clean_archtecture/src/modules/product/infra/datasource/product_datasource.dart';
-
-import '../../../../core/consts/api_consts.dart';
+import '../../../../core/shared/consts/api_consts.dart';
+import '../../../../core/shared/services/remote/http_client_service.dart';
+import '../../infra/datasource/product_datasource.dart';
 
 class ProductDataSourceImp extends IProductDataSoucer {
   final IHttpService httpClient;
