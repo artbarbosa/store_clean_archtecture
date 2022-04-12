@@ -14,7 +14,7 @@ void main() {
     repository = ProductRepositoryMock();
     usecase = GetAllProductsImp(repository: repository);
   });
-  
+
   test('Should return List ProductEntity', () async {
     when(() => repository.getAllProducts()).thenAnswer((_) async => [entity]);
 
