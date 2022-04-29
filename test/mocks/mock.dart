@@ -4,7 +4,10 @@ import 'package:store_clean_archtecture/src/core/modules/product/domain/entities
 import 'package:store_clean_archtecture/src/core/modules/product/domain/repositories/product_repository.dart';
 import 'package:store_clean_archtecture/src/core/modules/product/domain/value_objects/category.dart';
 import 'package:store_clean_archtecture/src/core/modules/product/infra/datasource/product_datasource.dart';
+import 'package:store_clean_archtecture/src/core/modules/user/domain/entities/user_entity.dart';
+import 'package:store_clean_archtecture/src/core/modules/user/domain/value_objects/name.dart';
 import 'package:store_clean_archtecture/src/core/shared/services/remote/http_client_service.dart';
+import 'package:store_clean_archtecture/src/modules/cart/domain/entities/cart_entity.dart';
 import 'package:store_clean_archtecture/src/modules/cart/domain/repositories/cart_repository.dart';
 
 class HttpServiceMock extends Mock implements IHttpService {}
@@ -31,6 +34,13 @@ final productEntity = ProductEntity(
   category: category,
 );
 
+final productEntityInvalid = ProductEntity(
+    id: '',
+    title: '',
+    description: '',
+    price: double.infinity,
+    category: category);
+
 final productMap = {
   "id": 1,
   "title": "Fjallraven",
@@ -39,3 +49,24 @@ final productMap = {
   "category": "men's clothing",
   "image": "https://test",
 };
+
+final nameObject = Name(firstName: 'Arthur', lastName: 'Barbosa');
+
+final cartEntity = CartEntity(
+  id: 1,
+  products: [productEntity],
+  user: userEntity,
+);
+
+final userEntity = UserEntity(
+  id: 1,
+  email: 'test@gmail.com',
+  username: 'arthur',
+  name: nameObject,
+);
+final userEntityInvalid = UserEntity(
+  id: 1,
+  email: '',
+  username: '',
+  name: nameObject,
+);

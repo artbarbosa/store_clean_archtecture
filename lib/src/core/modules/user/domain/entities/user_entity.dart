@@ -19,7 +19,7 @@ class UserEntity {
   });
 
   bool isValid() {
-    return id.isNaN &&
+    return !id.isNaN &&
         email.isNotEmpty &&
         username.isNotEmpty &&
         name.firstName.isNotEmpty &&

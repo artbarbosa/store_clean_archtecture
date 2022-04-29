@@ -1,21 +1,21 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:store_clean_archtecture/src/core/modules/product/domain/errors/product_errors.dart';
-import 'package:store_clean_archtecture/src/modules/cart/domain/usecases/add_product_to_cart_usecase.dart';
+import 'package:store_clean_archtecture/src/modules/cart/domain/usecases/delete_product_to_cart_usecase.dart';
 
 import '../../../../../mocks/mock.dart';
 
 void main() {
   late CartRepositoryMock repository;
-  late AddProductToCartUseCaseImp usecase;
+  late DeleteProductToCartUseCaseImp usecase;
 
   setUpAll(() {
     repository = CartRepositoryMock();
-    usecase = AddProductToCartUseCaseImp(repository);
+    usecase = DeleteProductToCartUseCaseImp(repository);
   });
 
-  test('Should return bool confirm add product', () async {
-    when(() => repository.addProductToCart(productEntity))
+  test('Should return bool confirm delete product', () async {
+    when(() => repository.deleteProductToCart(productEntity))
         .thenAnswer((_) async => true);
 
     final result = await usecase.call(productEntity);
@@ -24,7 +24,7 @@ void main() {
   });
 
   test('Should throw bool ProductInvalid', () async {
-    when(() => repository.addProductToCart(productEntityInvalid))
+    when(() => repository.deleteProductToCart(productEntityInvalid))
         .thenAnswer((_) async => true);
 
     expect(() => usecase.call(productEntityInvalid),
