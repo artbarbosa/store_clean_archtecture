@@ -6,15 +6,23 @@ class UserEntity {
   final String email;
   final String username;
   final Name name;
-  final Address address;
-  final String phone;
+  final Address? address;
+  final String? phone;
 
   const UserEntity({
     required this.id,
     required this.email,
     required this.username,
     required this.name,
-    required this.address,
-    required this.phone,
+    this.address,
+    this.phone,
   });
+
+  bool isValid() {
+    return id.isNaN &&
+        email.isNotEmpty &&
+        username.isNotEmpty &&
+        name.firstName.isNotEmpty &&
+        name.lastName.isNotEmpty;
+  }
 }

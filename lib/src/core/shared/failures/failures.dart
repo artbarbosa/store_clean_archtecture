@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
 abstract class Failure {
-  final String errorMessage;
-
   Failure({
+    String? errorMessage,
     StackTrace? stackTrace,
     String? label,
     dynamic exception,
-    this.errorMessage = '',
   }) {
     if (stackTrace != null) {
       debugPrintStack(label: label, stackTrace: stackTrace);
@@ -16,7 +14,6 @@ abstract class Failure {
 }
 
 class UnknownError extends Failure {
-  @override
   final String errorMessage;
   final dynamic exception;
   final StackTrace? stackTrace;
@@ -28,6 +25,7 @@ class UnknownError extends Failure {
     this.exception,
     this.stackTrace,
   }) : super(
+          errorMessage: errorMessage,
           stackTrace: stackTrace,
           label: label,
           exception: exception,

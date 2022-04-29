@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:store_clean_archtecture/src/core/modules/product/domain/entities/product_entity.dart';
+import 'package:store_clean_archtecture/src/core/modules/product/domain/repositories/product_repository.dart';
+import 'package:store_clean_archtecture/src/core/modules/product/domain/value_objects/category.dart';
+import 'package:store_clean_archtecture/src/core/modules/product/infra/datasource/product_datasource.dart';
 import 'package:store_clean_archtecture/src/core/shared/services/remote/http_client_service.dart';
-import 'package:store_clean_archtecture/src/modules/product/domain/entities/product_entity.dart';
-import 'package:store_clean_archtecture/src/modules/product/domain/repositories/cart_repository.dart';
-import 'package:store_clean_archtecture/src/modules/product/domain/repositories/product_repository.dart';
-import 'package:store_clean_archtecture/src/modules/product/infra/datasource/product_datasource.dart';
+import 'package:store_clean_archtecture/src/modules/cart/domain/repositories/cart_repository.dart';
 
 class HttpServiceMock extends Mock implements IHttpService {}
 
@@ -19,6 +20,16 @@ class CartRepositoryMock extends Mock implements ICartRepository {}
 class ProductEntityMock extends Mock implements ProductEntity {}
 
 class IProductDataSoucerMock extends Mock implements IProductDataSoucer {}
+
+final category = Category(name: "men's clothing");
+
+final productEntity = ProductEntity(
+  id: '1',
+  title: "Fjallraven",
+  description: "Your perfect pack for everyday use and walks in the forest.",
+  price: 109.95,
+  category: category,
+);
 
 final productMap = {
   "id": 1,
