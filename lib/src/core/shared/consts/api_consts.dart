@@ -1,5 +1,6 @@
 class ApiConst {
   static String allProductsURL() => 'https://fakestoreapi.com/products';
+
   static String allCategoriesURL() =>
       'https://fakestoreapi.com/products/categories';
 

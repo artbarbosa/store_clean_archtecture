@@ -55,4 +55,17 @@ void main() {
       expect(result['id'], 1);
     });
   });
+  group('ProductDataSourceImp - getAllCategorys', () {
+    test('Should return List', () async {
+      when(() => httpClient.get(any())).thenAnswer((_) async => Response(
+            requestOptions: RequestOptions(path: ''),
+            data: listCategorys,
+          ));
+
+      final result = await datasource.getAllCategorys();
+
+      expect(result, isA<List>());
+      expect(result[0], 'electronics');
+    });
+  });
 }

@@ -27,4 +27,10 @@ class ProductRepositoryImp implements IProductRepository {
     final result = await datasource.getSingleProductById(id);
     return JsonToProduct.fromMap(result);
   }
+
+  @override
+  Future<List<Category>> getAllCategorys() async {
+    final list = await datasource.getAllCategorys();
+    return list.map((e) => Category(name: e)).toList();
+  }
 }

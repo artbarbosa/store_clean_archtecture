@@ -64,9 +64,17 @@ final userEntity = UserEntity(
   username: 'arthur',
   name: nameObject,
 );
+
 final userEntityInvalid = UserEntity(
   id: 1,
   email: '',
   username: '',
   name: nameObject,
 );
+
+final listCategorys = [
+  "electronics",
+  "jewelery",
+  "men's clothing",
+  "women's clothing"
+];

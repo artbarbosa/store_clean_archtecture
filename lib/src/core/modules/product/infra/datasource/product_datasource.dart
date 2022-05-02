@@ -1,5 +1,6 @@
 abstract class IProductDataSoucer {
-  Future<List<Map>> getAllProducts();
-  Future<Map> getSingleProductById(int id);
-  Future<List<Map>> getProductsBySpecificCategory(String name);
+  Future<List<dynamic>> getAllProducts();
+  Future<dynamic> getSingleProductById(int id);
+  Future<List<dynamic>> getProductsBySpecificCategory(String name);
+  Future<List<dynamic>> getAllCategorys();
 }

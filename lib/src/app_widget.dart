@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'core/shared/routers/routers.dart';
+
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
 
@@ -10,7 +12,8 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Container(),
+      initialRoute: Routers.initialRoute,
+      onGenerateRoute: Routers.generateRoutes,
     );
   }
 }

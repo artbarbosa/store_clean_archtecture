@@ -8,17 +8,17 @@ class ProductDataSourceImp extends IProductDataSoucer {
   ProductDataSourceImp({required this.httpClient});
 
   @override
-  Future<List<Map>> getAllProducts() async {
+  Future<List<dynamic>> getAllProducts() async {
     final response = await httpClient.get(ApiConst.allProductsURL());
-    final list = response.data as List<Map<String, dynamic>>;
-    return list;
+    final list = response.data;
+    return list as List<dynamic>;
   }
 
   @override
-  Future<List<Map>> getProductsBySpecificCategory(String name) async {
+  Future<List<dynamic>> getProductsBySpecificCategory(String name) async {
     final response = await httpClient.get(ApiConst.productsByCategoryURL(name));
-    final list = response.data as List<Map<String, dynamic>>;
-    return list;
+    final list = response.data;
+    return list as List<dynamic>;
   }
 
   @override
@@ -26,5 +26,12 @@ class ProductDataSourceImp extends IProductDataSoucer {
     final response = await httpClient.get(ApiConst.productsByIdURL(id));
     final result = response.data as Map<String, dynamic>;
     return result;
+  }
+
+  @override
+  Future<List<dynamic>> getAllCategorys() async {
+    final response = await httpClient.get(ApiConst.allCategoriesURL());
+    final list = response.data;
+    return list as List<dynamic>;
   }
 }

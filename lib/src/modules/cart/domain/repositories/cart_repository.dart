@@ -1,6 +1,5 @@
-import 'package:store_clean_archtecture/src/core/modules/user/domain/entities/user_entity.dart';
-
 import '../../../../core/modules/product/domain/entities/product_entity.dart';
+import '../../../../core/modules/user/domain/entities/user_entity.dart';
 import '../entities/cart_entity.dart';
 
 abstract class ICartRepository {

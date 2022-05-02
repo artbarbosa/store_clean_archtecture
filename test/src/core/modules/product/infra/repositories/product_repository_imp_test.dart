@@ -17,30 +17,47 @@ void main() {
     repository = ProductRepositoryImp(datasource: datasoucer);
   });
 
-  test('Product Repository getAllProducts', () async {
-    when(() => datasoucer.getAllProducts())
-        .thenAnswer((_) async => [productMap]);
+  group('Product Repository - getAllProducts', () {
+    test('Should return List ProductEntity', () async {
+      when(() => datasoucer.getAllProducts())
+          .thenAnswer((_) async => [productMap]);
 
-    final result = await repository.getAllProducts();
+      final result = await repository.getAllProducts();
 
-    expect(result, isA<List<ProductEntity>>());
+      expect(result, isA<List<ProductEntity>>());
+    });
   });
 
-  test('Product Repository getProductsBySpecificCategory', () async {
-    when(() => datasoucer.getProductsBySpecificCategory('teste'))
-        .thenAnswer((_) async => [productMap]);
+  group('Product Repository - getProductsBySpecificCategory', () {
+    test('Should return List ProductEntity', () async {
+      when(() => datasoucer.getProductsBySpecificCategory('teste'))
+          .thenAnswer((_) async => [productMap]);
 
-    final result = await repository.getProductsBySpecificCategory(category);
+      final result = await repository.getProductsBySpecificCategory(category);
 
-    expect(result, isA<List<ProductEntity>>());
+      expect(result, isA<List<ProductEntity>>());
+    });
   });
 
-  test('Product Repository getSingleProductById', () async {
-    when(() => datasoucer.getSingleProductById(1))
-        .thenAnswer((_) async => productMap);
+  group('Product Repository - getSingleProductById', () {
+    test('Should return ProductEntity', () async {
+      when(() => datasoucer.getSingleProductById(1))
+          .thenAnswer((_) async => productMap);
 
-    final result = await repository.getSingleProductById(1);
+      final result = await repository.getSingleProductById(1);
 
-    expect(result, isA<ProductEntity>());
+      expect(result, isA<ProductEntity>());
+    });
+  });
+
+  group('Product Repository - getAllCategorys', () {
+    test('Should return ProductEntity', () async {
+      when(() => datasoucer.getAllCategorys())
+          .thenAnswer((_) async => listCategorys);
+
+      final result = await repository.getAllCategorys();
+
+      expect(result, isA<List<Category>>());
+    });
   });
 }
