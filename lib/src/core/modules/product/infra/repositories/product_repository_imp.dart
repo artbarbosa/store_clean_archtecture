@@ -5,7 +5,7 @@ import '../adapters/json_to_product.dart';
 import '../datasource/product_datasource.dart';
 
 class ProductRepositoryImp implements IProductRepository {
-  final IProductDataSoucer datasource;
+  final IProductDataSource datasource;
 
   ProductRepositoryImp({required this.datasource});
 

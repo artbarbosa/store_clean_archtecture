@@ -2,7 +2,7 @@ import '../../../../shared/consts/api_consts.dart';
 import '../../../../shared/services/remote/http_client_service.dart';
 import '../../infra/datasource/product_datasource.dart';
 
-class ProductDataSourceImp extends IProductDataSoucer {
+class ProductDataSourceImp extends IProductDataSource {
   final IHttpService httpClient;
 
   ProductDataSourceImp({required this.httpClient});

@@ -8,7 +8,7 @@ import 'package:store_clean_archtecture/src/core/modules/product/infra/repositor
 import '../../../../../../mocks/mock.dart';
 
 void main() {
-  late IProductDataSoucer datasoucer;
+  late IProductDataSource datasoucer;
   late ProductRepositoryImp repository;
   final category = Category(name: 'teste');
 

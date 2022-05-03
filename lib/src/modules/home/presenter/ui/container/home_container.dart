@@ -7,10 +7,13 @@ import '../../../../../core/modules/product/domain/usecases/get_products_by_spec
 import '../../../../../core/modules/product/external/datasource/product_datasource_imp.dart';
 import '../../../../../core/modules/product/infra/repositories/product_repository_imp.dart';
 import '../../../../../core/shared/services/remote/dio_http_client_service.dart';
+import '../components/category_component.dart';
+import '../controller/category_controller.dart';
 import '../controller/home_controller.dart';
 import '../home_error.dart';
 import '../home_loading.dart';
 import '../home_page.dart';
+import '../states/category_states.dart';
 import '../states/home_state.dart';
 
 class HomeContainer extends StatefulWidget {
@@ -21,8 +24,8 @@ class HomeContainer extends StatefulWidget {
 }
 
 class _HomeContainerState extends State<HomeContainer> {
-  final controller = HomeController(
-    getAllProductsUseCase: GetAllProductsUseCaseImp(
+  final homeController = HomeController(
+    GetAllProductsUseCaseImp(
       ProductRepositoryImp(
         datasource: ProductDataSourceImp(
           httpClient: DioHttpServiceImp(
@@ -31,16 +34,7 @@ class _HomeContainerState extends State<HomeContainer> {
         ),
       ),
     ),
-    getAllCategorysUseCase: GetAllCategorysUseCaseImp(
-      ProductRepositoryImp(
-        datasource: ProductDataSourceImp(
-          httpClient: DioHttpServiceImp(
-            Dio(),
-          ),
-        ),
-      ),
-    ),
-    getProductsByCategoryUseCase: GetProductsBySpecificCategoryUseCaseImp(
+    GetProductsBySpecificCategoryUseCaseImp(
       ProductRepositoryImp(
         datasource: ProductDataSourceImp(
           httpClient: DioHttpServiceImp(
@@ -51,35 +45,62 @@ class _HomeContainerState extends State<HomeContainer> {
     ),
   );
 
+  final categoryController = CategoryController(GetAllCategorysUseCaseImp(
+    ProductRepositoryImp(
+      datasource: ProductDataSourceImp(
+        httpClient: DioHttpServiceImp(
+          Dio(),
+        ),
+      ),
+    ),
+  ));
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      controller.fetchProducts();
+      categoryController.getAllCategorys();
+      final firstCategory = categoryController.getFirstCategorys;
+      homeController.fetchProducts(firstCategory);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: ValueListenableBuilder(
-        valueListenable: controller,
-        builder: (context, value, child) {
-          if (value is HomeLoadedState) {
-            return HomePage(
-              listCategory: value.listCategory,
-              listProduct: value.listProducts,
-            );
-          }
-          if (value is HomeErrorState) {
-            return HomeError(
-              errorMessage: value.errorMessage,
-            );
-          }
-          return const HomeLoading();
-        },
-      ),
-    );
+        appBar: AppBar(),
+        body: CustomScrollView(
+          slivers: [
+            ValueListenableBuilder(
+              valueListenable: categoryController,
+              builder: (context, value, child) {
+                if (value is CategoryLoadedState) {
+                  return CategoryComponent(
+                    listCategorys: value.listCategory,
+                  );
+                }
+                if (value is CategoryErrorState) {
+                  return Container();
+                }
+                return Container();
+              },
+            ),
+            ValueListenableBuilder(
+              valueListenable: homeController,
+              builder: (context, value, child) {
+                if (value is HomeLoadedState) {
+                  return HomePage(
+                    listProduct: value.listProducts,
+                  );
+                }
+                if (value is HomeErrorState) {
+                  return HomeError(
+                    errorMessage: value.errorMessage,
+                  );
+                }
+                return const HomeLoading();
+              },
+            ),
+          ],
+        ));
   }
 }

@@ -22,7 +22,7 @@ class CartRepositoryMock extends Mock implements ICartRepository {}
 
 class ProductEntityMock extends Mock implements ProductEntity {}
 
-class IProductDataSoucerMock extends Mock implements IProductDataSoucer {}
+class IProductDataSoucerMock extends Mock implements IProductDataSource {}
 
 final category = Category(name: "men's clothing");
 
