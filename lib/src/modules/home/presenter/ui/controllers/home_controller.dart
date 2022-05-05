@@ -4,18 +4,19 @@ import '../../../../../core/modules/product/domain/usecases/get_all_products_use
 import '../../../../../core/modules/product/domain/usecases/get_products_by_specific_category_usecase.dart';
 import '../../../../../core/modules/product/domain/value_objects/category.dart';
 import '../../../../../core/modules/product/infra/model/product_model.dart';
-import '../states/home_state.dart';
+import '../states/product_state.dart';
 
-class HomeController extends ValueNotifier<HomeState> {
+class ProductController extends ValueNotifier<ProductState> {
   final IGetAllProductsUseCase _getAllProductsUseCase;
   final IGetProductsBySpecificCategoryUseCase _getProductsByCategoryUseCase;
+  final String firstAllCategory = 'All';
 
-  HomeController(
+  ProductController(
     this._getAllProductsUseCase,
     this._getProductsByCategoryUseCase,
-  ) : super(HomeLoadingState());
+  ) : super(ProductLoadingState());
 
-  late List<ProductModel> _listProducts = [];
+  List<ProductModel> _listProducts = [];
 
   Future<void> _getAllProducts() async {
     _listProducts = await _getAllProductsUseCase.call() as List<ProductModel>;
@@ -31,18 +32,16 @@ class HomeController extends ValueNotifier<HomeState> {
   Future<void> searchProduct(String search) async {}
 
   Future<void> fetchProducts(Category category) async {
-    value = HomeLoadingState();
+    value = ProductLoadingState();
     try {
-      if (category.name == 'All') {
+      if (category.name == firstAllCategory) {
         await _getAllProducts();
       } else {
         await _getProductsByCategory(category);
       }
-      value = HomeLoadedState(
-        listProducts: _listProducts,
-      );
+      value = ProductLoadedState(listProducts: _listProducts);
     } catch (e) {
-      value = HomeErrorState(errorMessage: e.toString());
+      value = ProductErrorState(errorMessage: e.toString());
     }
   }
 }

@@ -11,7 +11,7 @@ class CategoryController extends ValueNotifier<CategoryState> {
     this._getAllCategorysUseCase,
   ) : super(CategoryLoadingState());
 
-  late List<Category> _listCategory;
+  List<Category> _listCategory = [];
 
   Category get getFirstCategorys => _listCategory.first;
 

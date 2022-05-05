@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../ui/container/home_container.dart';
+import '../ui/container/home_container_page.dart';
 
 class HomeRouter extends StatelessWidget {
   const HomeRouter({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class HomeRouter extends StatelessWidget {
         if (settings.name == '/home') {
           return MaterialPageRoute(
             builder: (context) {
-              return const HomeContainer();
+              return const HomeContainerPage();
             },
           );
         }

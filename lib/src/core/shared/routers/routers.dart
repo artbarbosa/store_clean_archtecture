@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../modules/home/presenter/router/home_route.dart';
 
 class Routers {
-  static String get initialRoute => '/home';
+  static String get initialRoute => '/';
 
   static Map<String, Widget Function(BuildContext, dynamic)> routes = {
     '/': (_, __) => const HomeRouter(),
