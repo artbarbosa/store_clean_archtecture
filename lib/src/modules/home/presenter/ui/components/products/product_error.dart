@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ProductComponentError extends StatefulWidget {
-  const ProductComponentError({Key? key, required this.errorMessage})
-      : super(key: key);
+  const ProductComponentError({
+    Key? key,
+    required this.errorMessage,
+  }) : super(key: key);
 
   final String errorMessage;
 

@@ -39,13 +39,12 @@ class _HomeContainerPageState extends State<HomeContainerPage> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        elevation: 0,
         backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            //Search
+            //SearchComponent
 
             //CategoryList
             ValueListenableBuilder(

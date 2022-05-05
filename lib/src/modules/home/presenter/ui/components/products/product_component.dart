@@ -16,8 +16,7 @@ class ProductComponent extends StatelessWidget {
       physics: const ScrollPhysics(),
       itemCount: listProduct.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: (1 / 1.4),
-        mainAxisExtent: 240,
+        childAspectRatio: (363 / 636),
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
         crossAxisCount: 2,
@@ -28,18 +27,52 @@ class ProductComponent extends StatelessWidget {
               color: const Color(0xFFFFFFFF),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Column(
-              children: [
-                Image.network(
-                  listProduct[index].image,
-                  fit: BoxFit.contain,
-                ),
-                Expanded(
-                  child: Container(
-                    color: Colors.red,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Spacer(),
+                  Image.network(
+                    listProduct[index].image,
+                    fit: BoxFit.contain,
+                    height: 150,
+                    color: Colors.green,
                   ),
-                )
-              ],
+                  const Spacer(),
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Container(
+                      height: 40,
+                      color: Colors.red,
+                      child: Column(
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                              style: const TextStyle(
+                                fontSize: 13,
+                              ),
+                              text: listProduct[index].title,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                          Text.rich(
+                            TextSpan(
+                              style: const TextStyle(
+                                fontSize: 13,
+                              ),
+                              text: listProduct[index].price.toString(),
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ));
       },
     );

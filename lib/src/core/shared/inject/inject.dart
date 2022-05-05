@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:store_clean_archtecture/src/core/modules/product/domain/usecases/get_single_product_by_id_usecase.dart';
 
+import '../../../modules/detail/presenter/ui/controller/detail_controller.dart';
 import '../../../modules/home/presenter/ui/controllers/category_controller.dart';
 import '../../../modules/home/presenter/ui/controllers/home_controller.dart';
 import '../../modules/product/domain/repositories/product_repository.dart';
@@ -43,6 +44,10 @@ class Inject {
 
     getIt.registerFactory<CategoryController>(
       () => CategoryController(getIt()),
+    );
+
+    getIt.registerFactory<DetailProductController>(
+      () => DetailProductController(getIt()),
     );
   }
 }
