@@ -11,7 +11,7 @@ class DetailProductController extends ValueNotifier<DetailProductState> {
     this._getSingleProductByIdUseCase,
   ) : super(DetailProductLoadingState());
 
-  Future<void> getProductById(int id) async {
+  Future<void> getProductById(String id) async {
     value = DetailProductLoadingState();
     try {
       final product =

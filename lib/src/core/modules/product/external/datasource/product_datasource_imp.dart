@@ -22,7 +22,7 @@ class ProductDataSourceImp extends IProductDataSource {
   }
 
   @override
-  Future<Map> getSingleProductById(int id) async {
+  Future<Map> getSingleProductById(String id) async {
     final response = await httpClient.get(ApiConst.productsByIdURL(id));
     final result = response.data as Map<String, dynamic>;
     return result;

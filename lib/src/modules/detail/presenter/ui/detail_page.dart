@@ -30,7 +30,7 @@ class _DetailPageState extends State<DetailPage> {
         valueListenable: controller,
         builder: (context, value, child) {
           if (value is DetailProductLoadedState) {
-            return Container();
+            return Center(child: Text(value.product.title));
           }
           if (value is DetailProductErrorState) {
             return Container();

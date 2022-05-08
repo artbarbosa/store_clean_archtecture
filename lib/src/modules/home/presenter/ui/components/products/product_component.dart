@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/modules/product/infra/model/product_model.dart';
+import '../../../../../detail/presenter/router/detail_arguments.dart';
 
 class ProductComponent extends StatelessWidget {
   const ProductComponent({Key? key, required this.listProduct})
@@ -22,58 +23,63 @@ class ProductComponent extends StatelessWidget {
         crossAxisCount: 2,
       ),
       itemBuilder: (context, index) {
-        return Container(
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFFFFF),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Spacer(),
-                  Image.network(
-                    listProduct[index].image,
-                    fit: BoxFit.contain,
-                    height: 150,
-                    color: Colors.green,
-                  ),
-                  const Spacer(),
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Container(
-                      height: 40,
-                      color: Colors.red,
-                      child: Column(
-                        children: [
-                          Text.rich(
-                            TextSpan(
-                              style: const TextStyle(
-                                fontSize: 13,
-                              ),
-                              text: listProduct[index].title,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          Text.rich(
-                            TextSpan(
-                              style: const TextStyle(
-                                fontSize: 13,
-                              ),
-                              text: listProduct[index].price.toString(),
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
+        return InkWell(
+          onTap: () {
+            Navigator.of(context).pushNamed('/detail',
+                arguments: DetailArguments(productId: listProduct[index].id));
+          },
+          child: Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFFFFF),
+                borderRadius: BorderRadius.circular(20),
               ),
-            ));
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Spacer(),
+                    Image.network(
+                      listProduct[index].image,
+                      fit: BoxFit.contain,
+                      height: 160,
+                    ),
+                    const Spacer(),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Container(
+                        height: 40,
+                        color: Colors.red,
+                        child: Column(
+                          children: [
+                            Text.rich(
+                              TextSpan(
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                ),
+                                text: listProduct[index].title,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                            Text.rich(
+                              TextSpan(
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                ),
+                                text: listProduct[index].price.toString(),
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )),
+        );
       },
     );
   }

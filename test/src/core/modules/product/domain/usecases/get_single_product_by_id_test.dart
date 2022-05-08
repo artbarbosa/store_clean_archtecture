@@ -19,7 +19,7 @@ void main() {
     when(() => repository.getSingleProductById(any()))
         .thenAnswer((_) async => entity);
 
-    final result = await usecase.call(1);
+    final result = await usecase.call('1');
 
     expect(result, isA<ProductEntity>());
   });

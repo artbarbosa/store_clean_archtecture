@@ -2,7 +2,7 @@ import '../entities/product_entity.dart';
 import '../repositories/product_repository.dart';
 
 abstract class IGetSingleProductByIdUseCase {
-  Future<ProductEntity> call(int id);
+  Future<ProductEntity> call(String id);
 }
 
 class GetSingleProductByIdUseCaseImp implements IGetSingleProductByIdUseCase {
@@ -11,7 +11,7 @@ class GetSingleProductByIdUseCaseImp implements IGetSingleProductByIdUseCase {
   GetSingleProductByIdUseCaseImp(this._repository);
 
   @override
-  Future<ProductEntity> call(int id) {
+  Future<ProductEntity> call(String id) {
     return _repository.getSingleProductById(id);
   }
 }

@@ -4,7 +4,7 @@ class ApiConst {
   static String allCategoriesURL() =>
       'https://fakestoreapi.com/products/categories';
 
-  static String productsByIdURL(int id) =>
+  static String productsByIdURL(String id) =>
       'https://fakestoreapi.com/products/$id';
 
   static String productsByCategoryURL(String category) =>

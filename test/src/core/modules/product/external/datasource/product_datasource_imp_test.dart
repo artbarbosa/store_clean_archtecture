@@ -49,7 +49,7 @@ void main() {
             data: productMap,
           ));
 
-      final result = await datasource.getSingleProductById(1);
+      final result = await datasource.getSingleProductById('1');
 
       expect(result, isA<Map>());
       expect(result['id'], 1);

@@ -23,7 +23,7 @@ class ProductRepositoryImp implements IProductRepository {
   }
 
   @override
-  Future<ProductEntity> getSingleProductById(int id) async {
+  Future<ProductEntity> getSingleProductById(String id) async {
     final result = await datasource.getSingleProductById(id);
     return JsonToProduct.fromMap(result);
   }

@@ -41,10 +41,10 @@ void main() {
 
   group('Product Repository - getSingleProductById', () {
     test('Should return ProductEntity', () async {
-      when(() => datasoucer.getSingleProductById(1))
+      when(() => datasoucer.getSingleProductById('1'))
           .thenAnswer((_) async => productMap);
 
-      final result = await repository.getSingleProductById(1);
+      final result = await repository.getSingleProductById('1');
 
       expect(result, isA<ProductEntity>());
     });

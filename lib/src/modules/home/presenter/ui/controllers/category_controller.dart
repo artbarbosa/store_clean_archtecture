@@ -6,6 +6,7 @@ import '../../../../../core/modules/product/domain/value_objects/category.dart';
 
 class CategoryController extends ValueNotifier<CategoryState> {
   final IGetAllCategorysUseCase _getAllCategorysUseCase;
+  final String _firstCategory = 'All';
 
   CategoryController(
     this._getAllCategorysUseCase,
@@ -13,13 +14,13 @@ class CategoryController extends ValueNotifier<CategoryState> {
 
   List<Category> _listCategory = [];
 
-  Category get getFirstCategorys => _listCategory.first;
+  Category get getFirstCategory => _listCategory.first;
 
   Future<void> getAllCategorys() async {
     value = CategoryLoadingState();
     try {
       _listCategory = await _getAllCategorysUseCase.call();
-      _listCategory.insert(0, Category(name: 'All'));
+      _listCategory.insert(0, Category(name: _firstCategory));
       value = CategoryLoadedState(listCategory: _listCategory);
     } catch (e) {
       value = CategoryErrorState(errorMessage: e.toString());

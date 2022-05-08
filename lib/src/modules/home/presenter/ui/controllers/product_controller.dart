@@ -9,7 +9,7 @@ import '../states/product_state.dart';
 class ProductController extends ValueNotifier<ProductState> {
   final IGetAllProductsUseCase _getAllProductsUseCase;
   final IGetProductsBySpecificCategoryUseCase _getProductsByCategoryUseCase;
-  final String firstAllCategory = 'All';
+  final String _firstAllCategory = 'All';
 
   ProductController(
     this._getAllProductsUseCase,
@@ -34,7 +34,7 @@ class ProductController extends ValueNotifier<ProductState> {
   Future<void> fetchProducts(Category category) async {
     value = ProductLoadingState();
     try {
-      if (category.name == firstAllCategory) {
+      if (category.name == _firstAllCategory) {
         await _getAllProducts();
       } else {
         await _getProductsByCategory(category);

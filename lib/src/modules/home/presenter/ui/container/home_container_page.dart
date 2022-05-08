@@ -7,7 +7,7 @@ import '../components/products/product_component.dart';
 import '../components/products/product_error.dart';
 import '../components/products/product_loading.dart';
 import '../controllers/category_controller.dart';
-import '../controllers/home_controller.dart';
+import '../controllers/product_controller.dart';
 import '../states/category_states.dart';
 import '../states/product_state.dart';
 
@@ -28,7 +28,7 @@ class _HomeContainerPageState extends State<HomeContainerPage> {
     WidgetsBinding.instance?.addPostFrameCallback(
       (timeStamp) async {
         await categoryController.getAllCategorys();
-        final firstCategory = categoryController.getFirstCategorys;
+        final firstCategory = categoryController.getFirstCategory;
         homeController.fetchProducts(firstCategory);
       },
     );
