@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:store_clean_archtecture/src/core/modules/product/domain/usecases/get_single_product_by_id_usecase.dart';
 
 import '../../../modules/detail/presenter/ui/controller/detail_controller.dart';
 import '../../../modules/home/presenter/ui/controllers/category_controller.dart';
@@ -9,11 +8,13 @@ import '../../modules/product/domain/repositories/product_repository.dart';
 import '../../modules/product/domain/usecases/get_all_categorys_usecase.dart';
 import '../../modules/product/domain/usecases/get_all_products_usecase.dart';
 import '../../modules/product/domain/usecases/get_products_by_specific_category_usecase.dart';
+import '../../modules/product/domain/usecases/get_single_product_by_id_usecase.dart';
 import '../../modules/product/external/datasource/product_datasource_imp.dart';
 import '../../modules/product/infra/datasource/product_datasource.dart';
 import '../../modules/product/infra/repositories/product_repository_imp.dart';
 import '../services/remote/dio_http_client_service.dart';
 import '../services/remote/http_client_service.dart';
+import '../ui/controllers/custom_navigation_bar_controller.dart';
 
 class Inject {
   static initialize() {
@@ -48,6 +49,10 @@ class Inject {
 
     getIt.registerFactory<DetailProductController>(
       () => DetailProductController(getIt()),
+    );
+
+    getIt.registerLazySingleton<CustomNavigationBarController>(
+      () => CustomNavigationBarController(0),
     );
   }
 }

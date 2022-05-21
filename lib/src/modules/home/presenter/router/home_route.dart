@@ -13,7 +13,7 @@ class HomeRouter extends StatelessWidget {
         if (settings.name == '/home') {
           return MaterialPageRoute(
             builder: (context) {
-              return const HomeContainerPage();
+              return HomeContainerPage();
             },
           );
         }

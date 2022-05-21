@@ -14,7 +14,7 @@ class ProductComponent extends StatelessWidget {
     return GridView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       shrinkWrap: true,
-      physics: const ScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: listProduct.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: (363 / 636),

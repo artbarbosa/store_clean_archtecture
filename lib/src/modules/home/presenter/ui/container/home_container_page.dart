@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../../core/shared/consts/app_color_const.dart';
+import '../../../../../core/shared/ui/controllers/custom_navigation_bar_controller.dart';
 import '../components/category/category_component.dart';
 import '../components/products/product_component.dart';
 import '../components/products/product_error.dart';
@@ -12,7 +12,9 @@ import '../states/category_states.dart';
 import '../states/product_state.dart';
 
 class HomeContainerPage extends StatefulWidget {
-  const HomeContainerPage({Key? key}) : super(key: key);
+  const HomeContainerPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomeContainerPage> createState() => _HomeContainerPageState();
@@ -21,11 +23,12 @@ class HomeContainerPage extends StatefulWidget {
 class _HomeContainerPageState extends State<HomeContainerPage> {
   final homeController = GetIt.I.get<ProductController>();
   final categoryController = GetIt.I.get<CategoryController>();
+  final controllerBar = GetIt.I.get<CustomNavigationBarController>();
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback(
+    WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) async {
         await categoryController.getAllCategorys();
         final firstCategory = categoryController.getFirstCategory;
@@ -37,9 +40,14 @@ class _HomeContainerPageState extends State<HomeContainerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        title: const Text('Store'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.message),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(

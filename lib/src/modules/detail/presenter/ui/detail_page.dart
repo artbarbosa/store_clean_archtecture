@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../core/shared/widgets/custom_circular_progress_indicator.dart';
+import '../../../../core/shared/ui/widgets/custom_circular_progress_indicator.dart';
 import '../router/detail_arguments.dart';
 import 'controller/detail_controller.dart';
 import 'states/detail_states.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/shared/widgets/custom_circular_progress_indicator.dart';
+import '../../../../../../core/shared/ui/widgets/custom_circular_progress_indicator.dart';
 
 class ProductComponentLoading extends StatefulWidget {
   const ProductComponentLoading({Key? key}) : super(key: key);
