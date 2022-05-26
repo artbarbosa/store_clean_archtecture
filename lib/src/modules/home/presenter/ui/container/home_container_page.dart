@@ -23,7 +23,7 @@ class HomeContainerPage extends StatefulWidget {
 class _HomeContainerPageState extends State<HomeContainerPage> {
   final homeController = GetIt.I.get<ProductController>();
   final categoryController = GetIt.I.get<CategoryController>();
-  final controllerBar = GetIt.I.get<CustomNavigationBarController>();
+  final controller = GetIt.I.get<CustomNavigationBarController>();
 
   @override
   void initState() {
@@ -50,6 +50,7 @@ class _HomeContainerPageState extends State<HomeContainerPage> {
         ],
       ),
       body: SingleChildScrollView(
+        controller: controller.scrollController,
         child: Column(
           children: [
             //SearchComponent

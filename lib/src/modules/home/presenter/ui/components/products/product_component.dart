@@ -4,8 +4,7 @@ import '../../../../../../core/modules/product/infra/model/product_model.dart';
 import '../../../../../detail/presenter/router/detail_arguments.dart';
 
 class ProductComponent extends StatelessWidget {
-  const ProductComponent({Key? key, required this.listProduct})
-      : super(key: key);
+  const ProductComponent({super.key, required this.listProduct});
 
   final List<ProductModel> listProduct;
 

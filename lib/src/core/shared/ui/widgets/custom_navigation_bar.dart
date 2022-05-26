@@ -13,29 +13,52 @@ class CustomNavigationBar extends StatefulWidget {
 }
 
 class _CustomNavigationBarState extends State<CustomNavigationBar> {
-  final controllerbar = CustomNavigationBarController(0);
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.scrollAddListener();
+  }
+
+  @override
+  void dispose() {
+    widget.controller.scrollRemoveListener();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return NavigationBar(
-      selectedIndex: widget.controller.selectedIndex,
-      onDestinationSelected: (value) {
-        widget.controller.changePage(value);
-      },
-      destinations: const [
-        NavigationDestination(
-          label: 'Home',
-          icon: Icon(Icons.home),
+    return AnimatedBuilder(
+      animation: widget.controller.isVisible,
+      builder: (_, __) => AnimatedContainer(
+        duration: const Duration(milliseconds: 1000),
+        curve: Curves.fastLinearToSlowEaseIn,
+        height:
+            widget.controller.isVisible.value ? kBottomNavigationBarHeight : 0,
+        child: Wrap(
+          children: [
+            NavigationBar(
+              selectedIndex: widget.controller.selectedIndex,
+              onDestinationSelected: (value) {
+                widget.controller.changePage(value);
+              },
+              destinations: const [
+                NavigationDestination(
+                  label: 'Home',
+                  icon: Icon(Icons.home),
+                ),
+                NavigationDestination(
+                  label: 'Cart',
+                  icon: Icon(Icons.shopping_cart),
+                ),
+                NavigationDestination(
+                  label: 'Settings',
+                  icon: Icon(Icons.settings),
+                )
+              ],
+            )
+          ],
         ),
-        NavigationDestination(
-          label: 'Cart',
-          icon: Icon(Icons.shopping_cart),
-        ),
-        NavigationDestination(
-          label: 'Settings',
-          icon: Icon(Icons.settings),
-        )
-      ],
+      ),
     );
   }
 }

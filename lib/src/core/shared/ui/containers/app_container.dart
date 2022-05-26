@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../controllers/custom_navigation_bar_controller.dart';
 import '../widgets/custom_navigation_bar.dart';
@@ -12,13 +13,14 @@ class AppContainer extends StatefulWidget {
 }
 
 class _AppContainerState extends State<AppContainer> {
-  final controller = CustomNavigationBarController(0);
+  final CustomNavigationBarController controller =
+      GetIt.I.get<CustomNavigationBarController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomPageView(
-        controller: controller.pageController,
+        controller: controller,
       ),
       bottomNavigationBar: ValueListenableBuilder(
         valueListenable: controller,
