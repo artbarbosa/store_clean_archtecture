@@ -4,46 +4,45 @@ import 'package:flutter/rendering.dart';
 class CustomNavigationBarController extends ValueNotifier<int> {
   CustomNavigationBarController(super.value);
 
-  PageController pageController = PageController();
+  final PageController _pageController = PageController();
 
-  ScrollController scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
-  ValueNotifier<bool> isVisible = ValueNotifier<bool>(true);
+  final ValueNotifier<bool> _isVisible = ValueNotifier<bool>(true);
 
   int get selectedIndex => value;
 
+  PageController get pageController => _pageController;
+
+  ScrollController get scrollController => _scrollController;
+
+  ValueNotifier<bool> get isVisible => _isVisible;
+
   void changePage(int index) {
-    pageController.jumpToPage(index);
+    _pageController.jumpToPage(index);
     value = index;
   }
 
-  void _hideNav() {
-    isVisible.value = false;
-  }
+  void _hideNav() => _isVisible.value = false;
 
-  void _showNav() {
-    isVisible.value = true;
-  }
+  void _showNav() => _isVisible.value = true;
 
-  void scrollAddListener() {
-    scrollController.addListener(() {
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        _showNav();
-      } else {
-        _hideNav();
-      }
-    });
-  }
+  bool isScrollingUp() =>
+      _scrollController.position.userScrollDirection == ScrollDirection.forward;
 
-  void scrollRemoveListener() {
-    scrollController.removeListener(() {
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        _hideNav();
-      } else {
-        _showNav();
-      }
-    });
-  }
+  void scrollAddListener() => _scrollController.addListener(() {
+        if (isScrollingUp()) {
+          _showNav();
+        } else {
+          _hideNav();
+        }
+      });
+
+  void scrollRemoveListener() => _scrollController.removeListener(() {
+        if (isScrollingUp()) {
+          _hideNav();
+        } else {
+          _showNav();
+        }
+      });
 }
